@@ -1,0 +1,41 @@
+
+<div id="<%= `${product.product_id}-${product.variant_id}` %>">
+    <!-- Product image -->
+    <div class="col-md-2 col-lg-2 col-xl-2">
+        <img src="<%= product.image %>" class="img-fluid rounded-3" alt="Product Image">
+    </div>
+
+    <!-- I want to display the key and the value for each key/value pair in options.  -->
+    <!-- Product details -->
+    <div class="col-md-3 col-lg-3 col-xl-3">
+        <p class="lead fw-normal mb-2"><%= product.title%></p>
+        <p>
+            <span class="text-muted"><%= product.variant_name %></span>
+        </p>
+    </div>
+
+    <!-- Quantity of product -->
+    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+        <button class="btn btn-link px-2">
+            <i class="fas fa-minus"></i>
+        </button>
+        
+        <input class="quantity_input " min="0" name="quantity" value="<%= product.quantity %>" type="number" class="form-control form-control-sm" />
+        
+        <button class="btn btn-link px-2 quantity_btn">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+
+    <!-- Price of product -->
+    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+        <h5 class="mb-0"><%= Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD' }).format((product.price * product.quantity )/ 100) %></h5>
+    </div>
+
+    <!-- Remove product from cart -->
+    <div class="col-md-1 col-lg-1 col-xl-1">
+        <button class="btn btn-link px-2 remove_product">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>

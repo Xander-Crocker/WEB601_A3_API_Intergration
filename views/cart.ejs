@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> WEB601 Ecommerse | Cart</title>
+		<%- include('partials/head.ejs'); %>
+	</head> 
+
+	<body>
+		<%- include('partials/nav.ejs'); %>
+
+        <!-- ANCHOR Main Page Content - Cart -->
+		<section class="h-100" style="background-color: #eee;">
+			<div class="container h-100 py-5">
+				<div class="row d-flex justify-content-center align-items-center h-100">
+					<div class="col-10">
+						
+						<div class="d-flex justify-content-between align-items-center mb-4">
+							<h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+						</div>
+                        <!-- Empty Cart -->
+                        <button class="btn btn-danger" id="empty_cart"><i class="fas fa-trash"></i></button>
+
+                        <% if (Object.keys(cart).length === 0 || cart.line_items.length === 0) { %>
+                            <p>Cart is empty.</p>					
+                        <% } else {%>  
+                            <div class="card rounded-3 mb-4">
+                                <div class="card-body p-4">
+                                    <div class="row d-flex justify-content-between align-items-center">
+                                        <% cart.line_items.forEach(function(product){ %>
+
+                                            <%- include('partials/cart_products.ejs', { product: product }) %>
+                        
+                                        <% }); %>   
+                                        <h5 class="mb-0"><%= cart.line_items.length %></h5>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1" style="float:right; margin-top:20px; padding:10px">
+                                    <h5 class="mb-0">Total: </h5> 
+                                    <h5 class="mb-0"><%=  %></h5>
+                                </div>
+                                <div class="card-body">
+                                    
+                                    <div>
+                                        <button type="button" id="pay_btn" class="pay_btn" style="
+                                            margin-top:20px;
+                                            text-decoration: none;
+                                            float: right;
+                                            border: 0px;
+                                            background-color: #0085A1;
+                                            color: white;
+                                            border-radius: 3px;
+                                            padding: 15px;
+                                            padding-right: 25px;
+                                            padding-left: 25px;"
+                                        >Proceed to Pay</button>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }; %>  
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<%- include('partials/footer.ejs'); %>
+
+	</body>
+	<script src="/cart.js"></script>
+</html>

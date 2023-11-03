@@ -1,0 +1,12 @@
+        <!-- Rating stars -->
+        <span>
+            <% for(let i = 0; i < rating; i++) {%>
+                <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">
+                <label for="rating-input-1-5" class="rating-star1"></label>
+            <% }; %>
+            <% for(let i = rating; i < 5; i++) {%>
+                <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">
+                <label for="rating-input-1-5" class="rating-star"></label>
+            <% }; %>
+            <p><%= rating %>/5</p>
+        </span>

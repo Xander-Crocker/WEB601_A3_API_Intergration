@@ -1,0 +1,21 @@
+.left-column {
+  font-size: 25px;
+  padding-top: 3em;
+  margin-right: 40px;
+}
+
+.vl {
+  border-left: 5px solid;
+  height: 379px;
+  margin-right: 30px;
+}
+
+.row > * {
+  width: auto !important;
+  margin-top: 40px !important;
+  margin-bottom: 40px !important;
+}
+
+.card-wrapper {
+  width: 70% !important;
+}

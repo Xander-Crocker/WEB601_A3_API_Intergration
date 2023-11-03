@@ -1,0 +1,25 @@
+<header>
+    <!-- Top NavBar -->
+    <div class="header-top">
+        <div class="wrap"> 
+            <!-- Logo image / link to index.ejs -->
+            <div class="logo">
+                <a href="/"><img src="/images/logo2.png" alt="logo" style="max-height: 150px" /></a>
+            </div>
+            <!-- User nav buttons -->
+            <div class="cssmenu">
+                <ul>
+                    <li><a href="/cart">Cart</a></li>   
+                    <% if (user) { %>                     <li><a href="/dashboard/account">My Account</a></li> 
+                        <li><button style="border: none; outline: none; background-color: #fff;"><a id="logout-btn">Logout</a></button></li> 
+                    <% } else { %>
+                        <li><a href="/login">Login</a></li> 
+                        <li><a href="/signup">Sign up </a></li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <script src="/logout.js"></script>
+</header>

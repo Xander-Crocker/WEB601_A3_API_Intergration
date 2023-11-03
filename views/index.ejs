@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> WEB601 Ecommerce | Home</title>
+		<%- include('partials/head.ejs'); %>
+	</head>
+
+	<body>
+		<%- include('partials/nav.ejs'); %>
+
+		<!-- ANCHOR feature product - large product details -->
+		<div class="index-banner">
+			<div class="wmuSlider example1" style="height: 570px;">
+				<div class="wmuSliderWrapper">
+					<article style="position: relative; width: 100%; opacity: 1;"> 
+						<div class="banner-wrap">
+							<div class="slider-left">
+								<img src="/product_Images/shirt1.jpg" alt=""/> 
+							</div>
+							<div class="slider-right">
+								<h1>Fears Kill Dreams</h1>
+								<h2>Black</h2>
+								<p>Custom Shirts Co.</p>
+								<div class="btn"><a href="product_details.ejs">View Product</a></div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</article>
+				</div>
+			</div>
+
+			<!-- ANCHOR Main Page Content - product grid -->
+			<div class="main">
+				<div class="wrap">
+					<div class="inner_wrap">
+                        <% products.forEach(function(product){ %>
+                            <div class="content-bottom" ">
+                                <div class="box1">
+                                    <%- include('partials/product.ejs', {
+                                        id: product.id,
+                                        title: product.title,
+                                        subtitle: product.tags.join(', '),
+                                        imgsrc: product.images[0].src,
+                                        imgalt: 'shirt',
+                                        info: 'Shirt',
+                                        price: Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD' }).format(product.variants[0].price / 100),
+                                        star1: 'rating-star1',
+                                        star2: 'rating-star1',
+                                        star3: 'rating-star1',
+                                        star4: 'rating-star1',
+                                        star5: 'rating-star',
+                                        rating: 4
+                                    }) %>
+                                </div>
+                            </div>
+                        <% }); %>
+					</div>
+				</div>
+
+                <div class="clear"></div>
+			</div>
+		</div>
+
+		<%- include('partials/footer.ejs'); %>
+
+	</body>
+</html>

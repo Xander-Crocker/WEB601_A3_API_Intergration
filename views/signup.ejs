@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title> WEB601 Ecommerce | Sign Up</title>
+		<link href="/stylesheets/login_register.css" rel="stylesheet"/>
+		<%- include('partials/head.ejs'); %>
+	</head>
+
+	<body>
+        <%- include('partials/nav.ejs'); %>
+
+			<!-- ANCHOR main content - Login form -->
+			<main class="mb-4">
+				<body class="my-login-page">
+					<section class="h-100">
+						<div class="container h-100">
+							<div class="row justify-content-md-center h-100">
+								<div class="card-wrapper">
+									<div class="card fat">
+										<div class="card-body">
+											<h4 class="card-title">Register</h4>
+											<form>
+												<!-- Email Input -->
+												<div class="form-group">
+													<label for="email-input">Email</label>
+													<input id="email-input" type="email" class="form-control" name="email" autocomplete="email"  required autofocus>
+												</div>
+												<!-- First Name Input -->
+												<div class="form-group">
+													<label for="firstName-input">First Name</label>
+													<input id="firstName-input" type="name" class="form-control" name="firstName" autocomplete="firstName"  required data-eye>
+												</div>
+												<!-- Surname Input -->
+												<div class="form-group">
+													<label for="surname-input">Surname</label>
+													<input id="surname-input" type="name" class="form-control" name="surname" autocomplete="surname"  required data-eye>
+												</div>
+												<!-- Username Input -->
+												<div class="form-group">
+													<label for="username-input">Username</label>
+													<input id="username-input" type="username" class="form-control" name="username" autocomplete="username"  required data-eye>
+												</div>
+												<!-- Password Input -->
+												<div class="form-group">
+													<label for="password-input">Password</label>
+													<input id="password-input" type="password" class="form-control" name="password" autocomplete="password"  required data-eye>
+												</div>
+												<!-- Sign Up Button -->
+												<div class="form-group m-0">
+													<button type='button' class="btn btn-primary btn-block" id="register-btn">Sign Up</button>
+												</div>
+												<!-- Register Account Button -->
+												<div class="mt-4 text-center">
+													Already have an account? <br> <a href="/login.ejs">Login Here</a>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</body>
+			</main>	
+
+		<%- include('partials/footer.ejs'); %>
+
+		<script src="register.js"></script>
+	</body>
+
+</html>

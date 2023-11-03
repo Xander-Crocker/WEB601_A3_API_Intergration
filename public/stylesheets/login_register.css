@@ -1,0 +1,63 @@
+/* ANCHOR Login / Signup CSS*/
+
+.my-login-page .card-wrapper {
+	width: 400px;
+}
+
+.my-login-page .card {
+	border-color: transparent;
+	box-shadow: 0 4px 8px rgba(0,0,0,.05);
+}
+
+.my-login-page .card.fat {
+	padding: 10px;
+}
+
+.my-login-page .card .card-title {
+	margin-bottom: 30px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.my-login-page .form-control {
+	border-width: 2.3px;
+}
+
+.my-login-page .form-group label {
+	width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.my-login-page .btn.btn-block {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.my-login-page .h-100 {
+    margin-bottom: 4rem !important;
+}
+
+.my-login-page a {
+	text-decoration: none; 
+}
+
+@media screen and (max-width: 425px) {
+	.my-login-page .card-wrapper {
+		width: 90%;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.my-login-page .card.fat {
+		padding: 0;
+	}
+
+	.my-login-page .card.fat .card-body {
+		padding: 15px;
+	}
+}
+
+/* ANCHOR Account CSS */
+

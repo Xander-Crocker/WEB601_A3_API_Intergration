@@ -1,0 +1,40 @@
+<!-- FILEPATH: /c:/Workspace/WEB601_A2_Ecommerce_FullStack/views/partials/order_card.ejs -->
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Order <%= order.id %></h5>
+    </div>
+    <div class="card-body">
+        
+        <h6>Order Details:</h4>
+        <p>
+            Order Date: <%= order.created_at %><br>
+            Order Total: $<%= order.total_price %><br>
+            Order Status: <%= order.status %><br>
+        </p><br>
+       
+        <h6>Recipient Details:</h4>
+        <p>
+            Recipient Name: <%= order.address_to.first_name %> <%= order.address_to.last_name %><br>
+            Recipient Email: <%= order.address_to.email %><br>
+            Recipient Phone: <%= order.address_to.phone %><br>
+        </p><br>
+
+        <h6>Shipping Details:</h4>
+        <p>
+            Address: <%= order.address_to.address1 %><br>
+            City: <%= order.city %><br>
+            Postcode: <%= order.zip %><br>
+            Country: <%= order.country %><br>
+        </p><br>
+        
+        <h6>Product Details:</h4>
+        <% order.line_items.forEach(function(product){ %>
+            <p>
+                Name: <%= product.metadata.title %>  <%= product.metadata.variant_label %><br>
+                Price: <%= product.cost %><br>
+                Status: <%= product.status %><br>
+            </p>
+        <% }); %>
+    </div>
+</div>
