@@ -5,7 +5,7 @@ var router = express.Router();
 //SETUP - Import Routes
 const all = require('./all')
 const one = require('./one')
-// const update = require('./update')
+const update = require('./update')
 const deleteProduct = require('./delete')
 // const login = require('./login')
 // const logout = require('./logout')
@@ -13,7 +13,7 @@ const deleteProduct = require('./delete')
 
 router.use('/', all);
 router.use('/', one);
-// router.use('/', update);
+router.use('/', update);
 // router.use('/', update);
 router.use('/', deleteProduct);
 // router.use('/', login);
