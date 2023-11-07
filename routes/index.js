@@ -46,14 +46,23 @@ router.get('/dashboard/account', async function(req, res, next) {
 /* GET user orders page. */
 router.get('/dashboard/orders', async function(req, res, next) {
     try {
-        // console.log(req.session.user);
-        await axios.get(base_url.concat('api/order/all/'.concat(req.session.user._id))).then((response) => {
-            console.log(response.data);
-            res.render('dashboard/orders', { title: 'Orders', orders: response.data.orders });
-        }).catch((error) => {
-            console.log(error);
-            res.render('dashboard/orders', { title: 'Orders', orders: [] });
-        });
+        if (req.session.user.role === 'admin') {
+            await axios.get(base_url.concat('api/order/all/')).then((response) => {
+                console.log(response.data);
+                res.render('dashboard/orders', { title: 'Orders', orders: response.data.orders });
+            }).catch((error) => {
+                console.log(error);
+                res.render('dashboard/orders', { title: 'Orders', orders: [] });
+            });
+        } else { 
+            await axios.get(base_url.concat('api/order/all/'.concat(req.session.user._id))).then((response) => {
+                console.log(response.data);
+                res.render('dashboard/orders', { title: 'Orders', orders: response.data.orders });
+            }).catch((error) => {
+                console.log(error);
+                res.render('dashboard/orders', { title: 'Orders', orders: [] });
+            });
+        }
     } catch (error) {
         console.log(error);
         res.render('dashboard/orders', { title: 'Orders', orders: [] });
