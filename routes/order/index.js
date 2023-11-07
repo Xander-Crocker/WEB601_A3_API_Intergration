@@ -6,7 +6,7 @@ var router = express.Router();
 const all = require('./all')
 const create = require('./create')
 const update = require('./update')
-const update = require('./delete')
+const cancel = require('./delete')
 
 
 router.use('/', all);
