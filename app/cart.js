@@ -1,5 +1,5 @@
 document.getElementById('pay_btn').addEventListener('click', async() => {
-   
+
     await fetch('api/cart/create-checkout-session', {
         method: 'GET'
     }).then((response) => {
