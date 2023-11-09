@@ -51,5 +51,35 @@ async function addToCart() {
     });
 }
 
+async function deleteItem(){
+    const productId = document.getElementById("id").innerText;
+    console.log(productId)
+
+    await fetch(`/api/product/delete/${productId}`, {
+        method: "DELETE",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        redirect: "follow",
+        referrerPolicy: "same-origin",
+    }).then((response) => {
+        console.log(response);
+        if (response.status === 201 || response.status === 200) {
+            alert('Item deleted from the database.');
+        } else {
+            alert('Failed to delete item from the database.');
+            console.log(response)
+        }
+    }).catch((err) => {
+        console.log(err);
+    });
+
+}
+
 // Add a click event listener to the "Add to Cart" button
 document.getElementById("add_to_cart").addEventListener("click", addToCart);
+// Add a click event listener to the "Delete Item From DB" button
+document.getElementById("delete_item").addEventListener("click", deleteItem);
