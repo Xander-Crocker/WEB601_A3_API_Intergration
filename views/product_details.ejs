@@ -86,7 +86,7 @@
         <h3 class="m_3">Product Details</h3>
         <p class="m_text"><%- product.description %></p>
     </div>
-    
+
     <!-- name change for product -->
     <% if(user) {
         if(user.role == "admin") { %>
@@ -120,6 +120,13 @@
 		
 		<%- include('partials/footer.ejs'); %>
 
+        <!-- name change for product -->
+    <% if(user) {
+        if(user.role == "admin") { %>
+            <script src="/profile.js"></script>
+        <% }}; %>	
+
         <script src="/product.js"></script>
+        
 </body>
 </html>
