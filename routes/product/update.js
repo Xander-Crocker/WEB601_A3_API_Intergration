@@ -1,58 +1,57 @@
 //SETUP - Modules
-var express = require('express');
-var router = express.Router();
-const bcrypt = require('bcrypt');
-
-
-//SETUP - Import Models
-const User = require('../../models/user')
-
+const express = require('express');
+const axios = require('axios').default;
+const router = express.Router();
 
 //SETUP - Import Middlewares
-const { updateSchema, handleValidationErrors, validate } = require('../../middlewares/validation');
+const { idOnlySchema, handleValidationErrors, validate } = require('../../middlewares/validation');
 const { matchedData, checkSchema } = require('express-validator');
 const authorize = require('../../middlewares/auth')
 
 
 //SETUP - Configure Middlewares
-const saltRounds = 10;
-
+const axiosRequest = axios.create({
+    baseURL: 'https://api.printify.com/v1', // Replace with your API's base URL
+    headers: {
+        'Authorization': `Bearer ${process.env.PRINTIFY_TOKEN}`,
+        //'Content-Type': 'application/json', // Adjust the content type if needed
+    },
+});
 
 /* -------------------------------------------------------------------------- */    
-/*                         //SECTION - Update user                            */
+/*                         //SECTION - Update Product (Name)                  */
 /* -------------------------------------------------------------------------- */
 router.put(
     '/update/:id',
     authorize(['admin', 'customer']),
-    validate(checkSchema(updateSchema)),
+    validate(checkSchema(idOnlySchema)),
     handleValidationErrors,
     async (req, res) => {
         try {
             // Extract data from the validated data.
             const data = matchedData(req);
-            const { password, id } = data;
+            const {id} = data;
 
-            // Hash and salt the password, then store in database.
-            bcrypt.hash(password, saltRounds, async function(err, hash) {
-                if (err) {
-                    console.log(err);
+            // Get shop id from .env
+            const shop = process.env.SHOP_ID;
+
+            // Update product name
+
+            await axiosRequest.put(`/shops/${shop}/products/${id}.json`, {
+                title: req.body.title,
+            }).then((response) => {
+                //console.log(response.data);
+                if(response.data.status == "error"){
+                    // log all errors
+                    console.log(response.data.errors);
+                    return res.status(400).json({ error: "The product was unable to be updated. Please try again."});
                 }
-
-                // update the users password to the database
-                User.findByIdAndUpdate(id, { password: hash }).then(result => {
-                    if (result.matchedCount = 0) {
-                        return res.status(404).send({
-                            message: 'Document not found.'
-                        });
-                    } else if (result.modifiedCount = 0) {
-                        return res.status(500).send({ error: 'Document found, but could not be updated.' });
-                    } else {
-                        return res.status(201).send({
-                            message: 'User password changed successfully.'
-                        });
-                    }
-                });
+                return res.status(200).json({message: "Product updated successfully"});
+            }).catch((error) => {
+                console.log(error.response.data.errors);
+                return res.status(400).json({ error: "The product was unable to be updated. Please try again."});
             });
+            
         } catch (error) {
             // If there's an error, respond with an error message
             return res.status(500).send({ error: 'Something went wrong. Please try again.' });
