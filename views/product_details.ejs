@@ -33,6 +33,13 @@
 			<div class="cont1 span_2_of_a1">
                 <p id="id" hidden><%= product.id %></p>
 
+                <div>
+                    <% if(user) {
+                        if(user.role == "admin") { %>
+                        <%- include('product_admin.ejs'); %>
+                    <% }}; %>
+                </div>
+
 				<h3 class="m_3"><%= product.title %></h3>
 				
 				<div class="price_single">
